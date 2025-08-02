@@ -12,7 +12,7 @@ import ru.netology.daohibernate.service.PersonsService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/persons/by-city")
+@RequestMapping("/persons")
 public class PersonsController {
     private final PersonsService personsService;
 
@@ -22,7 +22,25 @@ public class PersonsController {
     }
 
     @GetMapping
-    public List<Person> getPersonsByCity(@RequestParam(name="city") String city) {
+    public List<Person> getAllPersons() {
+        return personsService.getAllPersons();
+    }
+
+    @GetMapping("/by-city")
+    public List<Person> getPersonsByCity(@RequestParam(name = "city") String city) {
         return personsService.getPersonsByCity(city);
+    }
+
+    @GetMapping("/by-age")
+    public List<Person> getPersonsByAge(@RequestParam(name = "age") int age) {
+        return personsService.getPersonsByAge(age);
+    }
+
+    @GetMapping("/by-name-and-surname")
+    public List<Person> getPersonsByNameSurname (
+            @RequestParam (name = "name") String name,
+            @RequestParam (name = "surname") String surname)
+    {
+        return personsService.getPersonsByNameSurname(name, surname);
     }
 }

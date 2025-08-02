@@ -19,5 +19,5 @@ public class Person {
     @Column(name="phone_number", length = 20)
     private String phoneNumber;
     @Column(name="city_of_living", nullable = false, length = 50)
-    private String cityOfLeaving;
+    private String cityOfLiving;
 }

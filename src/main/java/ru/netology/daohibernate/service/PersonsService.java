@@ -14,10 +14,22 @@ public class PersonsService {
     @Autowired
     public PersonsService(PersonsRepository personsRepository) {
         this.personsRepository = personsRepository;
-        personsRepository.repositoryInit();
+    }
+
+    public List<Person> getAllPersons() {
+        return personsRepository.findAll();
     }
 
     public List<Person> getPersonsByCity(String city) {
-        return personsRepository.getPersonsByCity(city);
+        return personsRepository.findByIgnoreCaseCityOfLiving(city);
     }
+
+    public List<Person> getPersonsByAge(int age) {
+        return personsRepository.findByHumanAgeLessThanOrderByHumanAgeAsc(age);
+    }
+
+    public List<Person> getPersonsByNameSurname(String name, String surname) {
+        return personsRepository.findByHumanNameIgnoreCaseAndHumanSurnameIgnoreCase(name, surname);
+    }
+
 }
