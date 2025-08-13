@@ -18,19 +18,30 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         var uds = new InMemoryUserDetailsManager();
 
-        var u1 = User.withUsername("admin")
+        var u1 = User.withUsername("read")
+                .password(passwordEncoder().encode("read"))
+                .roles("READ")
+                .build();
+
+        var u2 = User.withUsername("write")
+                .password(passwordEncoder().encode("write"))
+                .roles("WRITE")
+                .build();
+
+        var u3 = User.withUsername("delete")
+                .password(passwordEncoder().encode("delete"))
+                .roles("DELETE")
+                .build();
+        var u4 = User.withUsername("admin")
                 .password(passwordEncoder().encode("admin"))
                 .authorities("search")
                 .build();
 
-        var u2 = User.withUsername("user")
-                .password(passwordEncoder().encode("11111"))
-                .authorities("read")
-                .build();
 
         uds.createUser(u1);
         uds.createUser(u2);
-
+        uds.createUser(u3);
+        uds.createUser(u4);
         return uds;
     }
 
