@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@EnableMethodSecurity(jsr250Enabled = true, securedEnabled = true)
+
 @RequestMapping("/secure")
 public class SecMethController {
 
